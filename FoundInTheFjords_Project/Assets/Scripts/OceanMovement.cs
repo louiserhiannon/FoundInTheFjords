@@ -25,7 +25,7 @@ public class OceanMovement : MonoBehaviour
         //set current distance to 0
         currentDistance = 0f;
         //set max speed
-        maxSpeed = 30f;
+        maxSpeed = 15f; //15 m/s is the equivalent of 54 km/hr
         maxDistance = 10000f;
         endPositionZ = -1100f;
         speed= 0f;
