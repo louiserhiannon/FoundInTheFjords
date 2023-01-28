@@ -1508,9 +1508,18 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Spin",
+                    "name": "JumpUp",
                     "type": "Button",
-                    "id": "e75e4649-22c7-4e4f-ae86-7c763e1c6169",
+                    "id": "f264c2a0-a85a-4430-b66a-c23f61a08c0a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "JumpDown",
+                    "type": "Button",
+                    "id": "51f5902d-50af-41e7-8015-d2bc8264db3e",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -1531,12 +1540,23 @@
                 },
                 {
                     "name": "",
-                    "id": "2f31a105-6aed-4bc4-a972-535d50e9225e",
+                    "id": "94e6cfe0-0ab6-49b7-8c88-60b84993c4ab",
+                    "path": "<XRController>{LeftHand}/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "JumpUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "11d5bce3-cd48-4811-9d71-a00e2378fcc9",
                     "path": "<XRController>{LeftHand}/secondaryButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Generic XR Controller",
-                    "action": "Spin",
+                    "groups": "",
+                    "action": "JumpDown",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

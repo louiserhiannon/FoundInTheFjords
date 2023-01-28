@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class JellyInteractions : MonoBehaviour
 {
@@ -56,7 +57,7 @@ public class JellyInteractions : MonoBehaviour
     {
         if (firstPanel != null)
         {
-            firstPanel.alpha = 1;
+            firstPanel.DOFade(1f, 1.5f);
             firstPanel.interactable = true;
             firstPanel.blocksRaycasts = true;
         }

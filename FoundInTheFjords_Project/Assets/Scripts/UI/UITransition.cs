@@ -13,21 +13,11 @@ public class UITransition : MonoBehaviour
     public void UINext()
     {
 
+        
         if (nextPanel != null)
         {
-            foreach (CanvasGroup panel in infoUI.GetComponentsInChildren<CanvasGroup>())
-            {
-                panel.DOFade(0f, 1.0f);
-                panel.interactable = false;
-                panel.blocksRaycasts = false;
-            }
-
-            nextPanel.DOFade(1f, 1.0f);
-            nextPanel.interactable = true;
-            nextPanel.blocksRaycasts = true;
-
-
-
+            StartCoroutine(SwitchPanel()); 
+            
         }
 
     }
@@ -42,9 +32,23 @@ public class UITransition : MonoBehaviour
                 panel.interactable = false;
                 panel.blocksRaycasts = false;
             }
-
-            
         
+    }
+
+    private IEnumerator SwitchPanel()
+    {
+        foreach (CanvasGroup panel in infoUI.GetComponentsInChildren<CanvasGroup>())
+        {
+            panel.DOFade(0f, 1.0f);
+            panel.interactable = false;
+            panel.blocksRaycasts = false;
+        }
+        yield return new WaitForSeconds(1.1f);
+
+        nextPanel.DOFade(1f, 1.5f);
+        nextPanel.interactable = true;
+        nextPanel.blocksRaycasts = true;
+
 
     }
 }

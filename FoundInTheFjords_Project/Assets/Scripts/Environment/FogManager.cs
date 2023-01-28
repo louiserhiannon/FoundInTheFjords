@@ -7,15 +7,15 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class FogManager : MonoBehaviour
     //Controls the density and appearance of fog in renderer so it is deactivated above water and increases with depth underwater
 {
-    public Transform xRRig; //Transform component of XR Rig Game object
+    public Transform headset; //Transform component of maincamera Game object
     [SerializeField]
-    private float rigDepth; //y-coordinate (height) of rig in world space
+    private float headsetDepth; //y-coordinate (height) of camera in world space
     [SerializeField]
     private float fogFactor; // normalized value (between 0 and 1) used to calculate fog density at a given depth
     [SerializeField]
     private float maxFogDepth; // depth (negative height) at which fog density reaches maximum value
     [SerializeField]
-    private float rigDepthCorrected; // corrected depth that takes into account that ocean surface is at y = 2 (due to sky box)
+    private float headsetDepthCorrected; // corrected depth that takes into account that ocean surface is at y = 2 (due to sky box)
     public float maxFogDensity; // max fog density value (occurs at max fog depth and beyond
     public float minFogDensity; // minimum fog density value (occurs at water surface
 
@@ -29,11 +29,11 @@ public class FogManager : MonoBehaviour
 
     void Update()
     {
-        rigDepth = xRRig.position.y;
-        rigDepthCorrected = rigDepth - 2;
+        headsetDepth = headset.position.y;
+        headsetDepthCorrected = headsetDepth - 2f;
 
         //when the camera is above the water surface
-        if (rigDepthCorrected >= 0)
+        if (headsetDepthCorrected >= 0)
         {
             //Switch off fog
             RenderSettings.fog = false;
@@ -49,11 +49,11 @@ public class FogManager : MonoBehaviour
             
 
             //when the rig is shallower than the max fog depth (note that depth is a negative value so shallower depths correspond to larger [less negative] numbers)
-            if (rigDepth > maxFogDepth)
+            if (headsetDepth > maxFogDepth)
             {
                 
                 //the fog density is a linear interpolation from min to max based on depth
-                fogFactor = rigDepthCorrected / maxFogDepth;
+                fogFactor = headsetDepthCorrected / maxFogDepth;
                 RenderSettings.fogDensity = minFogDensity + fogFactor * (maxFogDensity - minFogDensity);
             }
 
