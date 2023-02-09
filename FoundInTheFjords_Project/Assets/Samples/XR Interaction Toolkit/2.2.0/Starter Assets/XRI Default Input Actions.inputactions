@@ -1561,6 +1561,54 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "OrcaBehaviours",
+            "id": "d4f1e854-f2b3-49ac-8147-e032f14e3d52",
+            "actions": [
+                {
+                    "name": "Bite",
+                    "type": "Button",
+                    "id": "b606a2de-6147-45a8-a549-6d7d81fa0ac0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "TailSlap",
+                    "type": "Value",
+                    "id": "bc07e8fa-d672-44b3-a3dc-a3f5286564ed",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c913a60f-bdd5-47fc-bccd-b60fb61f2315",
+                    "path": "<XRController>{RightHand}/secondaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Bite",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "db564f30-141e-4ce4-b53e-1f86fd9d83c6",
+                    "path": "<XRController>{RightHand}/gripButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "TailSlap",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

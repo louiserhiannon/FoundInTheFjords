@@ -2895,6 +2895,7 @@ GameObject:
   - component: {fileID: 1770318210}
   - component: {fileID: 1770318209}
   - component: {fileID: 1770318211}
+  - component: {fileID: 1770318212}
   m_Layer: 0
   m_Name: XR Rig
   m_TagString: Untagged
@@ -2956,7 +2957,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1770318207}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c2a71ef2c309fc246a63796346948c79, type: 3}
   m_Name: 
@@ -2970,9 +2971,29 @@ MonoBehaviour:
   cameraForward: {x: 0, y: 0, z: 0}
   cameraRight: {x: 0, y: 0, z: 0}
   moveSpeed: 0
-  maxSpeed: 4
-  maxTranslateSpeed: 0.5
-  spinAngleMax: 0
+  currentSpeed: 0
+  timeAtZero: 0
+--- !u!114 &1770318212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1770318207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 649d1c810cf129b4dbec72528d2e8489, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeedReference: {fileID: -7311850537698500689, guid: c348712bda248c246b8c49b3db54643f,
+    type: 3}
+  upJumpReference: {fileID: 6387002989369105328, guid: c348712bda248c246b8c49b3db54643f,
+    type: 3}
+  downJumpReference: {fileID: 9137024802564582790, guid: c348712bda248c246b8c49b3db54643f,
+    type: 3}
+  cameraForward: {x: 0, y: 0, z: 0}
+  cameraRight: {x: 0, y: 0, z: 0}
+  moveSpeed: 0
   currentSpeed: 0
   timeAtZero: 0
 --- !u!1 &2015308859

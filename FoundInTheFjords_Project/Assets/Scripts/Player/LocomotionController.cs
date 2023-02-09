@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.XR.CoreUtils;
@@ -9,126 +10,83 @@ public class LocomotionController : MonoBehaviour
     public InputActionReference moveSpeedReference = null;
     public InputActionReference upJumpReference = null;
     public InputActionReference downJumpReference = null;
-    private Transform xrRig;
-    private Camera mainCamera;
-    [SerializeField] private Vector3 cameraForward = new Vector3();
-    [SerializeField] private Vector3 cameraRight = new Vector3();
-    private Vector3 netCameraVector = new Vector3();
-    private Vector3 sidewaysCameraVector = new Vector3();
-    [SerializeField] private float moveSpeed;
-    private float sidewaysSpeed;
-    public float maxSpeed = 2f;
-    public float maxTranslateSpeed = 0.5f;
-    public float spinAngleMax;
-    [SerializeField] private float currentSpeed;
-    private float acceleration;
-    private float desiredAngle;
-    private float rotationToDesiredAngle;
-    private float updatedAngle;
-    private float currentAngle;
-    private float smoothingFactor = 10f;
-    private float jumpAmount = 0.5f;
-    [SerializeField]private float timeAtZero = 0f;
+    protected Transform xrRig;
+    protected Camera mainCamera;
+    [SerializeField] protected Vector3 cameraForward = new Vector3();
+    [SerializeField] protected Vector3 cameraRight = new Vector3();
+    protected Vector3 netCameraVector = new Vector3();
+    protected Vector3 sidewaysCameraVector = new Vector3();
+    [SerializeField] protected float moveSpeed;
+    [SerializeField] protected float sidewaysSpeed;
+    protected float maxSpeed;
+    protected float maxTranslateSpeed;
+    protected float spinAngleMax;
+    [SerializeField] protected float currentSpeed;
+    protected float acceleration;
+    [SerializeField] protected float desiredAngle;
+    [SerializeField] protected float rotationToDesiredAngle;
+    [SerializeField] protected float updatedAngle;
+    [SerializeField] protected float currentAngle;
+    protected float smoothingFactor = 10f;
+    protected float jumpAmount;
+    [SerializeField] protected float timeAtZero = 0f;
     
     // Start is called before the first frame update
-    private void Awake()
+    void Awake()
     {
         xrRig = GetComponent<Transform>(); 
         mainCamera = GetComponentInChildren<Camera>();
         currentSpeed = 0f;
-        acceleration = 0.05f;
         currentAngle= 0f;
-      
-        
+        acceleration = 0.05f;
+        maxTranslateSpeed = 0.5f;
+        maxSpeed = 2f;
+        jumpAmount = 0.5f;
+
     }
 
-    private void OnEnable()
+    void OnEnable()
     {
         upJumpReference.action.started += JumpUp;
         downJumpReference.action.started += JumpDown;
     }
 
-    private void OnDisable()
+    void OnDisable()
     {
         upJumpReference.action.started -= JumpUp;
         downJumpReference.action.started -= JumpDown;
     }
 
-    private void Update()
+    void Update()
     {
         Vector2 thumbstickPosition = moveSpeedReference.action.ReadValue<Vector2>();
         float yvalue = thumbstickPosition.y;
         float xvalue = thumbstickPosition.x;        
         MoveForwardRelativeToCamera(yvalue);
         MoveSidewaysRelativeToCamera(xvalue);
-        
+               
     }
 
-    public void MoveForwardRelativeToCamera(float relativeForwardSpeed)
+
+    public virtual void MoveForwardRelativeToCamera(float relativeForwardSpeed)
     {
-        moveSpeed = relativeForwardSpeed * maxSpeed;
-        if (moveSpeed == 0f)
-        {
-            timeAtZero += Time.deltaTime;
-            if (timeAtZero > 2f)
-            {
-                currentSpeed = 0f;
-                timeAtZero= 0f;
-            }
-        }
-        
-        if (currentSpeed < moveSpeed)
-            {
-                currentSpeed += acceleration;
-            }
-
-        if (currentSpeed > moveSpeed)
-            {
-                currentSpeed -= acceleration;
-            }
-        
-        
-              
-        cameraForward = mainCamera.transform.forward;
-        netCameraVector = currentSpeed * cameraForward;
-
-        xrRig.transform.Translate(netCameraVector * Time.deltaTime, Space.World);
+        throw new NotImplementedException();
     }
 
-    public void MoveSidewaysRelativeToCamera(float relativeSidewaysSpeed)
+    public virtual void MoveSidewaysRelativeToCamera(float relativeSidewaysSpeed)
     {
-        
-        //Rotate along local z axis
-        spinAngleMax = 35f;
-            //Add smoothing effect
-              
-        desiredAngle = -relativeSidewaysSpeed * spinAngleMax; //desired angle is between -25 (right) and +25 (left)
-        rotationToDesiredAngle = (desiredAngle - currentAngle) / smoothingFactor;
-        updatedAngle = currentAngle + rotationToDesiredAngle;
 
-
-        xrRig.transform.localEulerAngles = new Vector3(xrRig.transform.localEulerAngles.x, xrRig.transform.localEulerAngles.y, updatedAngle);
-
-        currentAngle = updatedAngle;
-        
-        //translate sideways
-        sidewaysSpeed = relativeSidewaysSpeed * maxTranslateSpeed;
-        cameraRight = mainCamera.transform.right;
-        cameraRight.y = 0f;
-        cameraRight.Normalize();
-        sidewaysCameraVector = sidewaysSpeed * cameraRight;
-        
-        xrRig.transform.Translate(sidewaysCameraVector * Time.deltaTime, Space.World);
+        throw new NotImplementedException();
 
     }
 
-    public void JumpUp(InputAction.CallbackContext context)
+    public virtual void JumpUp(InputAction.CallbackContext context)
     {
-        xrRig.Translate(0f, jumpAmount, 0f);
+        throw new NotImplementedException();
     }
 
-    public void JumpDown(InputAction.CallbackContext context)
+    public virtual void JumpDown(InputAction.CallbackContext context)
     {
-        xrRig.Translate(0f, -jumpAmount, 0f);
+        throw new NotImplementedException();
     }
 }

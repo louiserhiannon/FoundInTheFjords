@@ -1,17 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class WaveManager : MonoBehaviour
 {
-    private Renderer waterSurface;
+    protected Renderer waterSurface;
     public float flowSpeedX;
     public float flowSpeedY;
-    private float textureOffsetX;
-    private float textureOffsetY;
+    protected float textureOffsetX;
+    protected float textureOffsetY;
+    protected Vector2 textureFlow;
    
-
-    private Vector2 textureFlow;
     void Start()
     {
         waterSurface = GetComponent<Renderer>();
@@ -19,6 +19,11 @@ public class WaveManager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+        FlowPattern();
+    }
+
+    public virtual void FlowPattern()
     {
         textureOffsetX = flowSpeedX * Time.time;
         textureOffsetY = flowSpeedY * Time.time;
