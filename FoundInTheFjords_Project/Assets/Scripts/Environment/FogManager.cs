@@ -9,25 +9,25 @@ public class FogManager : MonoBehaviour
 {
     public Transform headset; //Transform component of maincamera Game object
     [SerializeField]
-    private float headsetDepth; //y-coordinate (height) of camera in world space
+    protected float headsetDepth; //y-coordinate (height) of camera in world space
     [SerializeField]
-    private float fogFactor; // normalized value (between 0 and 1) used to calculate fog density at a given depth
+    protected float fogFactor; // normalized value (between 0 and 1) used to calculate fog density at a given depth
     [SerializeField]
-    private float maxFogDepth; // depth (negative height) at which fog density reaches maximum value
+    protected float maxFogDepth; // depth (negative height) at which fog density reaches maximum value
     [SerializeField]
-    private float headsetDepthCorrected; // corrected depth that takes into account that ocean surface is at y = 2 (due to sky box)
-    public float maxFogDensity; // max fog density value (occurs at max fog depth and beyond
-    public float minFogDensity; // minimum fog density value (occurs at water surface
+    protected float headsetDepthCorrected; // corrected depth that takes into account that ocean surface is at y = 2 (due to sky box)
+    protected float maxFogDensity; // max fog density value (occurs at max fog depth and beyond
+    protected float minFogDensity; // minimum fog density value (occurs at water surface
 
     void Start()
     {
-        maxFogDepth = -20.0f;
-        maxFogDensity = 0.1f;
-        minFogDensity = 0.03f;
+        maxFogDepth = -5.0f;
+        maxFogDensity = 0.02f;
+        minFogDensity = 0.02f;
 
     }
 
-    void Update()
+    public virtual void Update()
     {
         headsetDepth = headset.position.y;
         headsetDepthCorrected = headsetDepth - 2f;

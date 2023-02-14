@@ -11,6 +11,8 @@ public class JellyInteractions : MonoBehaviour
     public CanvasGroup firstPanel;
     private AudioSource jellyAudioSource;
     public AudioClip jellyClip;
+    public CanvasGroup firstButton;
+    public float clipDuration;
     public MeshRenderer interactionSignifier;
     private Color originalColour;
     
@@ -21,6 +23,11 @@ public class JellyInteractions : MonoBehaviour
         jellyAudioSource = GetComponent<AudioSource>();
         originalColour = interactionSignifier.material.color;
         DisablePanels();
+
+        if (jellyClip == null)
+        {
+            clipDuration = 0f;
+        }
 
     }
 
@@ -60,6 +67,17 @@ public class JellyInteractions : MonoBehaviour
             firstPanel.DOFade(1f, 1.5f);
             firstPanel.interactable = true;
             firstPanel.blocksRaycasts = true;
+
+            StartCoroutine(ShowButton());
+            
         }
+    }
+
+    public IEnumerator ShowButton()
+    {
+        yield return new WaitForSeconds(clipDuration);
+        firstButton.DOFade(1f, 1.5f);
+        firstButton.interactable = true;
+        firstButton.blocksRaycasts = true;
     }
 }

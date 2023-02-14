@@ -42,7 +42,7 @@ public class UIButtonInteractable : MonoBehaviour, IPointerEnterHandler, IPointe
 
 
         // hover sounds
-        audioSource.PlayOneShot(hoverSound);
+        audioSource.PlayOneShot(hoverSound, 0.25f);
         Debug.Log("Hover sounds should be playing");
     }
 
@@ -51,7 +51,7 @@ public class UIButtonInteractable : MonoBehaviour, IPointerEnterHandler, IPointe
         UISystemProfilerApi.AddMarker("Button.onClick", this);
 
         //play select sound
-        audioSource.PlayOneShot(selectSound);
+        audioSource.PlayOneShot(selectSound, 0.25f);
 
         onClick?.Invoke();
     }

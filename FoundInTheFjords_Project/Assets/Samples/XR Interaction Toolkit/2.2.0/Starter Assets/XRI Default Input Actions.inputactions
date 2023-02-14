@@ -1609,6 +1609,74 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "CustomInteractions",
+            "id": "8c15f386-3f1a-411d-9b49-6adc006d4d7a",
+            "actions": [
+                {
+                    "name": "UIPressed_Right",
+                    "type": "Button",
+                    "id": "bdf994e9-8796-46dd-a0cf-abc17d8dbf9c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Activate_Right",
+                    "type": "Button",
+                    "id": "65e0f99a-32b6-4a1e-abfa-5674e366a2c6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Select_Right",
+                    "type": "Button",
+                    "id": "15a305c8-3b6a-4403-bf8d-7d4a7ef0fbeb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "decc5b6a-7fe6-4efc-8383-5cb24b9d7620",
+                    "path": "<XRController>{RightHand}/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UIPressed_Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f27a65f1-633c-431a-9fb7-f3984593dcaf",
+                    "path": "<XRController>{RightHand}/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Activate_Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6485ab95-2cb6-4410-8adb-f180a5b75a3b",
+                    "path": "<XRController>{RightHand}/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select_Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

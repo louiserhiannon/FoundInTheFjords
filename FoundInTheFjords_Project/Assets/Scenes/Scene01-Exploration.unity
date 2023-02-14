@@ -409,6 +409,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6723031572330200253, guid: 9fa576937d8c0874fa24432af1a02a9c,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6723031572330200253, guid: 9fa576937d8c0874fa24432af1a02a9c,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6723031572330200253, guid: 9fa576937d8c0874fa24432af1a02a9c,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6723031572330200253, guid: 9fa576937d8c0874fa24432af1a02a9c,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -2971,7 +2986,12 @@ MonoBehaviour:
   cameraForward: {x: 0, y: 0, z: 0}
   cameraRight: {x: 0, y: 0, z: 0}
   moveSpeed: 0
+  sidewaysSpeed: 0
   currentSpeed: 0
+  desiredAngle: 0
+  rotationToDesiredAngle: 0
+  updatedAngle: 0
+  currentAngle: 0
   timeAtZero: 0
 --- !u!114 &1770318212
 MonoBehaviour:
@@ -2994,7 +3014,12 @@ MonoBehaviour:
   cameraForward: {x: 0, y: 0, z: 0}
   cameraRight: {x: 0, y: 0, z: 0}
   moveSpeed: 0
+  sidewaysSpeed: 0
   currentSpeed: 0
+  desiredAngle: 0
+  rotationToDesiredAngle: 0
+  updatedAngle: 0
+  currentAngle: 0
   timeAtZero: 0
 --- !u!1 &2015308859
 GameObject:
@@ -4705,17 +4730,17 @@ PrefabInstance:
     - target: {fileID: 170257704978258830, guid: 3168502525621364f8f55b9b48e7c7ed,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 9
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 170257704978258830, guid: 3168502525621364f8f55b9b48e7c7ed,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 9
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 170257704978258830, guid: 3168502525621364f8f55b9b48e7c7ed,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 9
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 170257704978258830, guid: 3168502525621364f8f55b9b48e7c7ed,
         type: 3}
