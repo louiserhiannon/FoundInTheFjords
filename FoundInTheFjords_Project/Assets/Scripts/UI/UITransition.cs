@@ -70,5 +70,6 @@ public class UITransition : MonoBehaviour
         nextPanelButton.interactable = true;
         nextPanelButton.blocksRaycasts = true;
         //SEE IF YOU CAN DELAY THE APPEARANCE OF BUTTON - Perhaps put on different panel?
+        //add something in code to make it look like I'm doing something
     }
 }
