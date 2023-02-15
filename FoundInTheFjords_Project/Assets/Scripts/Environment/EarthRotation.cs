@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class EarthRotation : MonoBehaviour
     //Controls rotation of the Earth
+    
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float rotateSpeed;
+    public float rotationTime;
 
-    // Update is called once per frame
     void Update()
     {
+        Debug.Log(Time.time);
+        if (Time.time <= rotationTime)
+        {
+            transform.Rotate(-Vector3.up, rotateSpeed * Time.deltaTime);
+        }
         
     }
 }
