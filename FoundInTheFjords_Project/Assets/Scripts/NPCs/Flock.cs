@@ -4,26 +4,33 @@ using UnityEngine;
 
 public class Flock : MonoBehaviour
 {
-    float speed;
-    bool turning = false;
+    protected float speed;
+    [SerializeField] protected bool turning = false;
+    //[SerializeField] protected bool turningAway = false;
     
-    void Start()
+    protected virtual void Start()
     {
         speed = Random.Range(FlockManager.FM.minSpeed, FlockManager.FM.maxSpeed);
     }
 
     
-    void Update()
+    protected void Update()
     {
-        Bounds b = new Bounds(FlockManager.FM.transform.position, FlockManager.FM.swimLimits * 2);
-
-        if(!b.Contains(transform.position))
+        Bounds outerBounds = new(transform.position, FlockManager.FM.outerLimits);
+        if (!outerBounds.Contains(transform.position))
         {
             turning= true;
+            //turningAway = false;
         }
+        //if (FlockManager.FM.innerBounds.Contains(transform.position))
+        //{
+        //    turning = false;
+        //    turningAway = true;
+        //}
         else
         {
-            turning= false;
+            turning = false;
+            //turningAway = false;
         }
 
         if (turning)
@@ -31,27 +38,32 @@ public class Flock : MonoBehaviour
             Vector3 direction = FlockManager.FM.transform.position - transform.position;
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), FlockManager.FM.rotationSpeed * Time.deltaTime);
         }
+        //else if (turningAway)
+        //{
+        //    Vector3 direction = transform.position - FlockManager.FM.transform.position;
+        //    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), FlockManager.FM.rotationSpeed * Time.deltaTime);
+        //}
         else
         {
-            if (Random.Range(1, FlockManager.FM.numHerring) < 10)
+            if (Random.Range(1, FlockManager.FM.flockSensitivity) < 10)
             {
                 speed = Random.Range(FlockManager.FM.minSpeed, FlockManager.FM.maxSpeed);
             }
 
-            if (Random.Range(1, FlockManager.FM.numHerring) < 10)
+            if (Random.Range(1, FlockManager.FM.flockSensitivity) < 10)
             {
                 ApplyRules();
             }
         }
-        
-        this.transform.Translate(0,0,speed * Time.deltaTime);
+
+        this.transform.Translate(0, 0, speed * Time.deltaTime);
 
     }
 
-    private void ApplyRules()
+    protected void ApplyRules()
     {
         GameObject[] gos;
-        gos = FlockManager.FM.allHerring;
+        gos = FlockManager.FM.allFlockers;
 
         //initialize local variables
         Vector3 vCentre = Vector3.zero;
@@ -83,7 +95,8 @@ public class Flock : MonoBehaviour
 
         if(groupSize > 0)
         {
-            vCentre = vCentre / groupSize;
+            
+            vCentre /= groupSize;
             vCentre += (FlockManager.FM.goalPosition - this.transform.position);
             speed = groupSpeed / groupSize;
             if(speed > FlockManager.FM.maxSpeed)
@@ -97,5 +110,30 @@ public class Flock : MonoBehaviour
             }
         }
 
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("orca"))
+        {
+            turning = true;
+        }
+        //if (other.CompareTag("shoal"))
+        //{
+        //    turningAway= true;  
+        //}    
+
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("orca"))
+        {
+            turning = false;
+        }
+        //if (other.CompareTag("shoal"))
+        //{
+        //    turningAway = false;
+        //}
+        
     }
 }
