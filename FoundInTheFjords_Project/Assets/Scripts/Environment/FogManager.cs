@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -16,14 +17,21 @@ public class FogManager : MonoBehaviour
     protected float maxFogDepth; // depth (negative height) at which fog density reaches maximum value
     [SerializeField]
     protected float headsetDepthCorrected; // corrected depth that takes into account that ocean surface is at y = 2 (due to sky box)
-    protected float maxFogDensity; // max fog density value (occurs at max fog depth and beyond
-    protected float minFogDensity; // minimum fog density value (occurs at water surface
+    public float maxFogDensity; // max fog density value (occurs at max fog depth and beyond
+    public float minFogDensity; // minimum fog density value (occurs at water surface
+
+    public GameObject underwaterDistortion;
+    private MeshRenderer underwaterDistortionRenderer;
+    private Color underwaterDistortionColor;
+    public float minAlpha;
+    public float maxAlpha;
 
     void Start()
     {
         maxFogDepth = -5.0f;
         maxFogDensity = 0.02f;
         minFogDensity = 0.02f;
+        underwaterDistortionRenderer = underwaterDistortion.GetComponent<MeshRenderer>();
 
     }
 
@@ -39,6 +47,7 @@ public class FogManager : MonoBehaviour
             RenderSettings.fog = false;
             //turn down light
             RenderSettings.ambientIntensity = 2f;
+            SwitchOffDistortion();
         }
         else
         {
@@ -62,8 +71,24 @@ public class FogManager : MonoBehaviour
                 //Once below the max depth, fog is set to the max density.
                 RenderSettings.fogDensity = maxFogDensity;
             }
+
+            ControlDistortion();
         }
         
 
+    }
+
+    private void ControlDistortion()
+    {
+        underwaterDistortion.SetActive(true);
+        underwaterDistortionColor = underwaterDistortionRenderer.material.color;
+        underwaterDistortionColor.a = minAlpha + fogFactor * (maxAlpha - minAlpha);
+        underwaterDistortionRenderer.material.color = underwaterDistortionColor;
+
+    }
+
+    private void SwitchOffDistortion()
+    {
+        underwaterDistortion.SetActive(false);
     }
 }
