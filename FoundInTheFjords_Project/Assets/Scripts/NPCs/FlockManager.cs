@@ -23,10 +23,16 @@ public class FlockManager : MonoBehaviour
     public float neighbourDistance;
     [Range(0.1f, 10.0f)]
     public float avoidDistance;
-    [Range(1.0f, 5.0f)]
-    public float rotationSpeed;
-    [Range(100, 1000)]
+    [Range(0.1f, 5.0f)]
+    public float flockRotationSpeed;
+    [Range(0.1f, 5.0f)]
+    public float boundsRotationSpeed;
+    [Range(50, 1000)]
+    public int goalSensitivity;
+    [Range(50, 1000)]
     public int flockSensitivity;
+    [Range(50, 1000)]
+    public int boundsSensitivity;
 
 
     public virtual void Start()
@@ -47,7 +53,7 @@ public class FlockManager : MonoBehaviour
 
     public virtual void Update()
     {
-        if (Random.Range(1, 100) < 10)
+        if (Random.Range(1, goalSensitivity) < 10)
         {
             goalPosition = this.transform.position + new Vector3(Random.Range(-outerLimits.x, outerLimits.x), Random.Range(-outerLimits.y, outerLimits.y), Random.Range(-outerLimits.z, outerLimits.z));
         }

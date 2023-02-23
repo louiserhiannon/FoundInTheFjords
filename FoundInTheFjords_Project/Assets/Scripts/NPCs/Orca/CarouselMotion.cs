@@ -36,6 +36,10 @@ public class CarouselMotion : MonoBehaviour
 
     void Update()
     {
+        //Calculate current distance from centre
+        rotateDistance = Vector3.Distance(parentTransform.position, transform.position);
+
+        //calculate speed
         if (CarouselManager.CM.controlSpeedWithDistance)
         {
             //CALCULATES SPEED BASED ON DISTANCE FROM AXIS
@@ -104,7 +108,7 @@ public class CarouselMotion : MonoBehaviour
 
     private void SpeedFromDistance()
     {
-        rotateDistance = Vector3.Distance(parentTransform.position, transform.position);
+        
 
         if (rotateDistance < maxDistance && rotateDistance > minDistance)
         {
