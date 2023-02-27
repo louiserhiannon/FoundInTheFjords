@@ -19,7 +19,7 @@ public class OceanMovement : MonoBehaviour
         //instantiate ocean boxes
         for (int i = 0; i < activePoints.Count; i++)
         {
-            GameObject oceanBox = Instantiate(oceanBoxPrefabs[i], activePoints[i], false);
+            Instantiate(oceanBoxPrefabs[i], activePoints[i], false);
         }
 
         //set current distance to 0
@@ -33,30 +33,30 @@ public class OceanMovement : MonoBehaviour
 
 
     }
-
-    // Update is called once per frame
+        
     void Update()
     {
         if (currentDistance < maxDistance)
         {
+            
             for (int i = 0; i < activePoints.Count; i++)
             {
+                //if box is beyond the end of the range, flip it back to the beginning
                 if (activePoints[i].transform.position.z <= endPositionZ)
                 {
                     activePoints[i].transform.Translate(0f, 0f, 1500f);
                 }
+                //otherwise move it along at a specific speed
                 activePoints[i].transform.Translate(0f, 0f, -speed * Time.deltaTime);
 
                 
             }
-            currentDistance += speed * Time.deltaTime;
+            currentDistance += speed * Time.deltaTime; //update distance travelled
             if (speed < maxSpeed)
             {
-                speed += acceleration;
+                speed += acceleration; //control speed
             }
-        }
-        
-         
+        } 
         
     }
 }

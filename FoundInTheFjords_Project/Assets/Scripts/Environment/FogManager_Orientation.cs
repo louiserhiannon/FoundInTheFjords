@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class FogManager_Orientation : FogManager
 {
+    //inherited class that adds functionality in orientation scene to deactivate mirrored objects when camera goes above the water surface
     public GameObject mirrorOrca;
     public GameObject mirrorJelly;
     public GameObject upperSeaBox;
@@ -20,9 +21,12 @@ public class FogManager_Orientation : FogManager
 
     public override void Update()
     {
+        
         base.Update();
+        
         if (headsetDepthCorrected >= 0)
         {
+            //switches off mirror orca, mirror jelly, and upper seabox
             mirrorOrca.SetActive(false);
             mirrorJelly.SetActive(false);
             upperSeaBox.SetActive(false);
@@ -31,6 +35,7 @@ public class FogManager_Orientation : FogManager
         }
         else
         {
+            //switches on mirror orca, mirror jelly, and upper seabox
             mirrorOrca.SetActive(true);
             mirrorJelly.SetActive(true);
             upperSeaBox.SetActive(true);

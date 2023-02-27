@@ -80,7 +80,9 @@ public class FogManager : MonoBehaviour
 
     private void ControlDistortion()
     {
+        //activates tinted blue filter in front of camera
         underwaterDistortion.SetActive(true);
+        //controls alpha of filter based on depth
         underwaterDistortionColor = underwaterDistortionRenderer.material.color;
         underwaterDistortionColor.a = minAlpha + fogFactor * (maxAlpha - minAlpha);
         underwaterDistortionRenderer.material.color = underwaterDistortionColor;
@@ -89,6 +91,7 @@ public class FogManager : MonoBehaviour
 
     private void SwitchOffDistortion()
     {
+        //switches of filter when camera goes above surface
         underwaterDistortion.SetActive(false);
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class WaveManager : MonoBehaviour
 {
+    //moves water surface texture 
     protected Renderer waterSurface;
     public float flowSpeedX;
     public float flowSpeedY;
@@ -17,7 +18,7 @@ public class WaveManager : MonoBehaviour
         waterSurface = GetComponent<Renderer>();
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         FlowPattern();

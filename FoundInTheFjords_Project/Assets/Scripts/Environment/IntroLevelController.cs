@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class IntroLevelController : MonoBehaviour
 {
+    //controls the zoom animation and voiceover for the intro scene
     public Transform xRRig;
     public Animator xrRigZoomAnimator;
     public float cameraZoom01Duration = 17f;
@@ -28,9 +29,13 @@ public class IntroLevelController : MonoBehaviour
 
     void Awake()
     {
+        //set initial position of Rig
         xRRig.position = new Vector3(-35, 255, -875.5f);
         xRRig.eulerAngles = new Vector3(15.73f, 2.293f, 0f);
+        //Start zoom coroutine
         StartCoroutine(IntroLevel());
+        
+        //initialize game objects and materials
         orca.SetActive(false);
         earthPlain.SetActive(true);
         earthOrcaDistribution.SetActive(false);

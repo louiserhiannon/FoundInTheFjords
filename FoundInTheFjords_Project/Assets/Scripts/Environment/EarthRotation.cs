@@ -12,6 +12,8 @@ public class EarthRotation : MonoBehaviour
     void Update()
     {
         Debug.Log(Time.time);
+
+        //rotates the earth on a vertical axis until a specified time point is reached
         if (Time.time <= rotationTime)
         {
             transform.Rotate(-Vector3.up, rotateSpeed * Time.deltaTime);

@@ -4159,7 +4159,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 968592485}
-  - component: {fileID: 968592484}
   - component: {fileID: 968592486}
   m_Layer: 0
   m_Name: FogManager
@@ -4168,23 +4167,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &968592484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 968592483}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05a9b31475e22d54dba4f378debd6c22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  headset: {fileID: 358763927}
-  headsetDepth: 0
-  fogFactor: 0
-  maxFogDepth: 2
-  headsetDepthCorrected: 0
 --- !u!4 &968592485
 Transform:
   m_ObjectHideFlags: 0
@@ -4217,6 +4199,11 @@ MonoBehaviour:
   fogFactor: 0
   maxFogDepth: 0
   headsetDepthCorrected: 0
+  maxFogDensity: 0
+  minFogDensity: 0
+  underwaterDistortion: {fileID: 0}
+  minAlpha: 0
+  maxAlpha: 0
   mirrorOrca: {fileID: 2145856731}
   mirrorJelly: {fileID: 650807735}
   upperSeaBox: {fileID: 6198871962652735509}
