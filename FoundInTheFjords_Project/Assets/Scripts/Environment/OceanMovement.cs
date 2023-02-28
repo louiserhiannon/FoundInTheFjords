@@ -9,10 +9,12 @@ public class OceanMovement : MonoBehaviour
     public List<GameObject> oceanBoxPrefabs;
     public float currentDistance;
     public float speed;
-    public float maxSpeed;
-    public float maxDistance;
-    public float endPositionZ;
-    public float acceleration;
+    public float maxSpeed = 15f;
+    public float maxDistance = 10000f;
+    public float endPositionZ = -1100f;
+    public float acceleration = 0.05f;
+    public float resetDistance = 1500f;
+    public bool isMoving = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,39 +26,51 @@ public class OceanMovement : MonoBehaviour
 
         //set current distance to 0
         currentDistance = 0f;
-        //set max speed
-        maxSpeed = 15f; //15 m/s is the equivalent of 54 km/hr
-        maxDistance = 10000f;
-        endPositionZ = -1100f;
-        speed= 0f;
-        acceleration = 0.05f;
+        isMoving= true;
+        
 
 
     }
         
     void Update()
     {
-        if (currentDistance < maxDistance)
+        
+        if(speed > 0)
         {
-            
-            for (int i = 0; i < activePoints.Count; i++)
+            if (currentDistance < maxDistance)
             {
-                //if box is beyond the end of the range, flip it back to the beginning
-                if (activePoints[i].transform.position.z <= endPositionZ)
-                {
-                    activePoints[i].transform.Translate(0f, 0f, 1500f);
-                }
-                //otherwise move it along at a specific speed
-                activePoints[i].transform.Translate(0f, 0f, -speed * Time.deltaTime);
 
-                
+                for (int i = 0; i < activePoints.Count; i++)
+                {
+                    //if box is beyond the end of the range, flip it back to the beginning
+                    if (activePoints[i].transform.position.z <= endPositionZ)
+                    {
+                        activePoints[i].transform.Translate(0f, 0f, resetDistance);
+                    }
+                    //otherwise move it along at a specific speed
+                    activePoints[i].transform.Translate(0f, 0f, -speed * Time.deltaTime);
+
+
+                }
+                currentDistance += speed * Time.deltaTime; //update distance travelled
+
             }
-            currentDistance += speed * Time.deltaTime; //update distance travelled
+        }
+        
+
+        if(isMoving)
+        {
             if (speed < maxSpeed)
             {
                 speed += acceleration; //control speed
             }
-        } 
+        }
+        else
+        {
+            speed = Mathf.Clamp(speed - acceleration, 0f, maxSpeed);
+            //reset travel distance if stopped
+            currentDistance = 0;
+        }
         
     }
 }

@@ -56,7 +56,7 @@ public class JellyFollow : MonoBehaviour
         //calculate follow direction
         followDirection = targetGameObject.position - transform.position;
         //calculate follow distance
-        followDistance = Mathf.Sqrt(Mathf.Pow(followDirection.x, 2) + Mathf.Pow(followDirection.y, 2) + Mathf.Pow(followDirection.z, 2));
+        followDistance = Vector3.Distance(targetGameObject.position, transform.position);
         //Normalize follow direction for move calculation
         followDirection.Normalize();
 
