@@ -6,6 +6,9 @@ using UnityEngine;
 public class SceneManager_Carousel : MonoBehaviour
 {
     public Canvas arrowCanvas;
+    public Canvas echolocationCanvas;
+    public Canvas ecosystemCanvas;
+    public Canvas migrationCanvas;
     public GameObject orcaMom;
     private Animator orcaMomAnimator;
     public CarouselSceneIntro carouselSceneIntro;
@@ -18,6 +21,24 @@ public class SceneManager_Carousel : MonoBehaviour
     {
         //Disable Panels
         foreach (CanvasGroup panel in arrowCanvas.GetComponentsInChildren<CanvasGroup>())
+        {
+            panel.alpha = 0;
+            panel.interactable = false;
+            panel.blocksRaycasts = false;
+        }
+        foreach (CanvasGroup panel in echolocationCanvas.GetComponentsInChildren<CanvasGroup>())
+        {
+            panel.alpha = 0;
+            panel.interactable = false;
+            panel.blocksRaycasts = false;
+        }
+        foreach (CanvasGroup panel in migrationCanvas.GetComponentsInChildren<CanvasGroup>())
+        {
+            panel.alpha = 0;
+            panel.interactable = false;
+            panel.blocksRaycasts = false;
+        }
+        foreach (CanvasGroup panel in ecosystemCanvas.GetComponentsInChildren<CanvasGroup>())
         {
             panel.alpha = 0;
             panel.interactable = false;

@@ -12,7 +12,7 @@ public class UIButtonInteractable : MonoBehaviour, IPointerEnterHandler, IPointe
 {
     private float hoverStartAnimationDuration = 0.2f;
     private float hoverEndAnimationDuration = 0.1f;
-    private float scaleIconSize = 1.15f;
+    private float scaleIconSize = 1.04f;
     private Vector3 startScale;
 
     public Canvas infoUI;
