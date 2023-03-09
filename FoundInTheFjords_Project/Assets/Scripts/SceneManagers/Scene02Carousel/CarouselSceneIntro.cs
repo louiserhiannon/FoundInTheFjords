@@ -12,16 +12,17 @@ public class CarouselSceneIntro : MonoBehaviour
     public AudioClip voiceover02;
     public AudioClip clickTrain;
     public Canvas arrowCanvas;
-    public CanvasGroup echolocationPanel;
+    public List<CanvasGroup> echolocationPanels;
     public OceanMovement oceanMovement;
     public Animator orcaMomAnimator;
     public float timeBeforeVoiceover1;
     public float voiceover1Part1Duration;
     public float voiceover1Part2Duration;
-    //public float voiceover1Part3Duration;
+    public float voiceover1Part3Duration;
     public float pauseAfterClick;
     public float voiceover2Duration;
     public float pauseForReflection;
+
 
 
     public IEnumerator Scene02Intro()
@@ -38,31 +39,74 @@ public class CarouselSceneIntro : MonoBehaviour
         orcaMomAnimator.SetTrigger("Trigger_StopSwim");
         //Wait some seconds
         yield return new WaitForSeconds(voiceover1Part2Duration);
-        ////show echolocation canvas
-        //if (echolocationPanel != null)
-        //{
-        //    echolocationPanel.DOFade(1f, 1.5f);
-        //    echolocationPanel.interactable = true;
-        //    echolocationPanel.blocksRaycasts = true;
-        //}
-        ////Wait some seconds
-        //yield return new WaitForSeconds(voiceover1Part3Duration);
+        //show echolocation canvas
+        if (echolocationPanels[0] != null)
+        {
+            echolocationPanels[0].DOFade(1f, 1.5f);
+            echolocationPanels[0].interactable = true;
+            echolocationPanels[0].blocksRaycasts = true;
+        }
+        //Wait some seconds
+        yield return new WaitForSeconds(voiceover1Part3Duration);
         //play click sound
         orcaMomSounds.PlayOneShot(clickTrain);
         //wait some seconds
         yield return new WaitForSeconds(pauseAfterClick);
         //Activate Voiceover 2
         orcaMomSounds.PlayOneShot(voiceover02);
+
+        //Start echolocation animation
+        for (int i = 0; i < 8; i++)
+        {
+            ImageSwitch(i);
+            yield return new WaitForSeconds(1f);
+        }
+
+        if (echolocationPanels[8] != null)
+        {
+            echolocationPanels[8].alpha = 0;
+            echolocationPanels[8].interactable = false;
+            echolocationPanels[8].blocksRaycasts = false;
+        }
+        if (echolocationPanels[1] != null)
+        {
+            echolocationPanels[1].alpha = 1;
+            echolocationPanels[1].interactable = true;
+            echolocationPanels[1].blocksRaycasts = true;
+        }
+
+        yield return new WaitForSeconds(1f);
+
+        for (int i = 0; i < 8; i++)
+        {
+            ImageSwitch(i);
+            yield return new WaitForSeconds(1f);
+        }
+
+        if (echolocationPanels[8] != null)
+        {
+            echolocationPanels[8].alpha = 0;
+            echolocationPanels[8].interactable = false;
+            echolocationPanels[8].blocksRaycasts = false;
+        }
+        if (echolocationPanels[0] != null)
+        {
+            echolocationPanels[0].alpha =1;
+            echolocationPanels[0].interactable = true;
+            echolocationPanels[0].blocksRaycasts = true;
+        }
+
         //Wait some seconds
         yield return new WaitForSeconds(voiceover2Duration);
+
         //play click sound
         orcaMomSounds.PlayOneShot(clickTrain);
         //Fade echolocation canvas
-        if (echolocationPanel != null)
+        if (echolocationPanels[0] != null)
         {
-            echolocationPanel.DOFade(0f, 1.5f);
-            echolocationPanel.interactable = false;
-            echolocationPanel.blocksRaycasts = false;
+            echolocationPanels[0].DOFade(0f, 1.5f);
+            echolocationPanels[0].interactable = false;
+            echolocationPanels[0].blocksRaycasts = false;
         }
         //Activate Arrow Panels
         foreach (CanvasGroup panel in arrowCanvas.GetComponentsInChildren<CanvasGroup>())
@@ -77,5 +121,21 @@ public class CarouselSceneIntro : MonoBehaviour
         reflectedSounds.PlayOneShot(clickTrain, 0.5f);
         
 
+    }
+
+    private void ImageSwitch(int value)
+    {
+        if (echolocationPanels[value] != null)
+        {
+            echolocationPanels[value].alpha = 0;
+            echolocationPanels[value].interactable = false;
+            echolocationPanels[value].blocksRaycasts = false;
+        }
+        if (echolocationPanels[value+1] != null)
+        {
+            echolocationPanels[value + 1].alpha = 1;
+            echolocationPanels[value + 1].interactable = true;
+            echolocationPanels[value + 1].blocksRaycasts = true;
+        }
     }
 }
