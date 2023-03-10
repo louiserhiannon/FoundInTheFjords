@@ -116,18 +116,19 @@ public class UIT_locateBaitball : UITransition
         xRRig.transform.SetParent(null);
         //Activate controls
         xRRig.GetComponent<LocomotionController_General>().enabled = true;
-        //Show panels
-        foreach(CanvasGroup panel in migrationCanvas.GetComponentsInChildren<CanvasGroup>())
-        {
-            panel.alpha= 1.0f;
-            panel.interactable= true;
-            panel.blocksRaycasts= true;
-        }
-        foreach (CanvasGroup panel in ecosystemCanvas.GetComponentsInChildren<CanvasGroup>())
-        {
-            panel.alpha = 1.0f;
-            panel.interactable = true;
-            panel.blocksRaycasts = true;
-        }
+        xRRig.GetComponent<EatingController>().enabled = true;
+        ////Show panels
+        //foreach (CanvasGroup panel in migrationCanvas.GetComponentsInChildren<CanvasGroup>())
+        //{
+        //    panel.alpha= 1.0f;
+        //    panel.interactable= true;
+        //    panel.blocksRaycasts= true;
+        //}
+        //foreach (CanvasGroup panel in ecosystemCanvas.GetComponentsInChildren<CanvasGroup>())
+        //{
+        //    panel.alpha = 1.0f;
+        //    panel.interactable = true;
+        //    panel.blocksRaycasts = true;
+        //}
     }
 }

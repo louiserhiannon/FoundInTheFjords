@@ -42,6 +42,14 @@ public class CarouselManager : MonoBehaviour
     [Range(100, 5000)]
     public int animationSensitivity;
     public bool controlSpeedWithDistance;
+    public GameObject stunnedHerringPrefab;
+    [Range(1, 10)]
+    public int minSpawnedHerring;
+    [Range(1, 10)]
+    public int maxSpawnedHerring;
+    public float spawnOffsetX;
+    public float spawnOffsetY;
+    public float spawnOffsetZ;
 
 
     // Start is called before the first frame update
@@ -53,6 +61,8 @@ public class CarouselManager : MonoBehaviour
         {
             Quaternion axisRotation = Random.rotation;
             allAxes[i] = Instantiate(axisPrefab, transform.position, axisRotation, carouselTransform);
+
+            //hide them (look at earth elevator for code)
 
         }
         CM = this;

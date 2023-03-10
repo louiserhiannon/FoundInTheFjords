@@ -7,18 +7,28 @@ using UnityEngine.InputSystem;
 
 public class EatingController : MonoBehaviour
 {
+    public static EatingController EC;
     public InputActionReference biteAction = null;
     public Eatable eatableHerring;
     public int eatenHerringCount = 0;
     public int targetHerringCount = 4;
+    [Range(1f, 60f)]
+    public float herringLifetime;
     private AudioSource audioSource;
     public List<AudioClip> successClips;
     public List<AudioClip> failureClips;
+    
 
     //public Eatable eatenHerring;
+
+    private void Awake()
+    {
+        EatingController.EC = this;
+    }
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        
     }
 
 
@@ -34,22 +44,44 @@ public class EatingController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        var eatable = other.GetComponent<Eatable>();
-        if (eatable != null)
+        if(other.CompareTag("stunnedHerring"))
         {
-            eatableHerring = eatable;
-            eatableHerring.OnHoverStart();
+            var eatable = other.GetComponent<Eatable>();
+            if (eatable != null)
+            {
+                eatableHerring = eatable;
+                eatableHerring.OnHoverStart();
+            }
         }
+        //else
+        //{
+        //    eatableHerring = null;
+        //}
+
     }
 
     private void OnTriggerExit(Collider other)
     {
-        var eatable = other.GetComponent<Eatable>();
-        if (eatable == eatableHerring)
+        if (other.CompareTag("stunnedHerring"))
         {
-            eatableHerring.OnHoverEnd();
-            eatableHerring = null;
+            //var eatable = other.GetComponent<Eatable>();
+            //if (eatable == eatableHerring)
+            //{
+            //    eatableHerring.OnHoverEnd();
+            //    eatableHerring = null;
+            //}
+
+            if (eatableHerring != null)
+            {
+                eatableHerring.OnHoverEnd();
+                eatableHerring = null;
+            }
         }
+        //else
+        //{
+        //    eatableHerring = null;
+        //}
+
     }
 
     public void Bite(InputAction.CallbackContext context)
@@ -62,9 +94,10 @@ public class EatingController : MonoBehaviour
             {
                 //DestroyHerring
                 Destroy(eatableHerring.gameObject);
-
+                Debug.Log("herring should disappear");
                 //increase count by 1
                 eatenHerringCount++;
+                Debug.Log(eatenHerringCount);
 
                 //play success audio
 

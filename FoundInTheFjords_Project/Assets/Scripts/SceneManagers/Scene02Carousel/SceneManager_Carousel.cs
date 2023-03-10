@@ -46,8 +46,9 @@ public class SceneManager_Carousel : MonoBehaviour
         }
         //Disable Move Controls
         xRRig.GetComponent<LocomotionController_General>().enabled = false;
-        ////Disable Follow script
-        //xRRig.GetComponent<FollowMom>().enabled = false;
+        
+        //Disable Eat Controller
+        xRRig.GetComponent<EatingController>().enabled = false;
         //Disable flock manager
         flockManager.GetComponent<FlockManager>().enabled = false;
         //Disable spawned Orca
@@ -64,9 +65,5 @@ public class SceneManager_Carousel : MonoBehaviour
         StartCoroutine(carouselSceneIntro.Scene02Intro());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }

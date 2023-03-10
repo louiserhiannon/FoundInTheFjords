@@ -6,6 +6,7 @@ TagManager:
   tags:
   - orca
   - shoal
+  - stunnedHerring
   layers:
   - Default
   - TransparentFX

@@ -15,9 +15,11 @@ public class CarouselMotion : MonoBehaviour
     [SerializeField] private bool coroutineRunning = false;
     private float minDistance;
     private float maxDistance;
-    public float maxSlapDistance = 5.5f;
+    public float maxSlapDistance = 6.0f;
     private Animator tailslapAnimator;
     
+
+
     void Start()
     {
         parentTransform = transform.parent;
@@ -131,7 +133,19 @@ public class CarouselMotion : MonoBehaviour
         {
             tailslapAnimator.SetTrigger("Trigger_TailSlap");
 
-            yield return new WaitForSeconds(3.0f);
+            yield return new WaitForSeconds(1.5f);
+
+            //Spawn stunned herring
+            int spawnedHerringCount = Random.Range(CarouselManager.CM.minSpawnedHerring, CarouselManager.CM.maxSpawnedHerring);
+
+            for (int i = 0; i < spawnedHerringCount; i++)
+            {
+                Vector3 pos = transform.position + 0.3f * (parentTransform.position - transform.position);
+                pos += new Vector3(Random.Range(-CarouselManager.CM.spawnOffsetX, CarouselManager.CM.spawnOffsetX), Random.Range(-CarouselManager.CM.spawnOffsetY, CarouselManager.CM.spawnOffsetY), Random.Range(-CarouselManager.CM.spawnOffsetZ, CarouselManager.CM.spawnOffsetZ));
+                Instantiate(CarouselManager.CM.stunnedHerringPrefab, pos, Random.rotation);
+            }
+
+            yield return new WaitForSeconds(1.5f);
 
             tailslapAnimator.SetTrigger("Trigger_SlapToSwim");
 
