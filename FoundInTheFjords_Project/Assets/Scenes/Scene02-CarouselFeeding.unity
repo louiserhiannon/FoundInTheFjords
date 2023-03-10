@@ -1109,15 +1109,16 @@ MonoBehaviour:
   voiceover02: {fileID: 8300000, guid: 4167745e8faf4dd4d9724a4bda9be1df, type: 3}
   clickTrain: {fileID: 8300000, guid: 9629782e127969f439d15c696113b49d, type: 3}
   arrowCanvas: {fileID: 426676888}
-  echolocationPanel1: {fileID: 1153109571}
-  echolocationPanel2: {fileID: 1541496566}
-  echolocationPanel3: {fileID: 2017893842}
-  echolocationPanel4: {fileID: 1029497331}
-  echolocationPanel5: {fileID: 1271246619}
-  echolocationPanel6: {fileID: 395580472}
-  echolocationPanel7: {fileID: 1003425169}
-  echolocationPanel8: {fileID: 1625744040}
-  echolocationPanel9: {fileID: 2012718068}
+  echolocationPanels:
+  - {fileID: 1153109571}
+  - {fileID: 1541496566}
+  - {fileID: 2017893842}
+  - {fileID: 1029497331}
+  - {fileID: 1271246619}
+  - {fileID: 395580472}
+  - {fileID: 1003425169}
+  - {fileID: 1625744040}
+  - {fileID: 2012718068}
   oceanMovement: {fileID: 337554328}
   orcaMomAnimator: {fileID: 3241124769390590655}
   timeBeforeVoiceover1: 5
@@ -1153,7 +1154,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 395580470}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
