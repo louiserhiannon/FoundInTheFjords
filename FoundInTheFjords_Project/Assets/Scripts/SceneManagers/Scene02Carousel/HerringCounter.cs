@@ -8,8 +8,7 @@ public class HerringCounter : MonoBehaviour
     public EatingController eatingController;
     public CanvasGroup counterDisplay;
     private TMP_Text counterText;
-    public CanvasGroup counterTitle;
-    private TMP_Text titleText;
+    
 
 
 
@@ -17,8 +16,11 @@ public class HerringCounter : MonoBehaviour
     void Start()
     { 
         counterText = counterDisplay.GetComponentInChildren<TMP_Text>();
-        titleText = counterTitle.GetComponentInChildren<TMP_Text>();
-        titleText.text = "Herring Count";
+        ////Disable Panel
+        //counterDisplay.alpha = 1f;
+        //counterDisplay.blocksRaycasts = false; 
+        //counterDisplay.interactable = false;
+
     }
 
     // Update is called once per frame
