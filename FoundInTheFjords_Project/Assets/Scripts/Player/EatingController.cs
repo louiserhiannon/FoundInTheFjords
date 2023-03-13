@@ -9,7 +9,9 @@ public class EatingController : MonoBehaviour
 {
     public static EatingController EC;
     public InputActionReference biteAction = null;
-    public Eatable eatableHerring;
+    public Eatable thisEatableHerring;
+    [SerializeField]
+    private List<Eatable> eatableHerrings = new List<Eatable>();
     public int eatenHerringCount = 0;
     public int targetHerringCount = 4;
     [Range(1f, 60f)]
@@ -49,8 +51,9 @@ public class EatingController : MonoBehaviour
             var eatable = other.GetComponent<Eatable>();
             if (eatable != null)
             {
-                eatableHerring = eatable;
-                eatableHerring.OnHoverStart();
+                thisEatableHerring = eatable;
+                eatableHerrings.Add(thisEatableHerring);
+                eatableHerrings[0].OnHoverStart();
             }
         }
         //else
@@ -60,22 +63,46 @@ public class EatingController : MonoBehaviour
 
     }
 
+    //private void OnTriggerStay(Collider other)
+    //{
+    //    if (other.CompareTag("stunnedHerring"))
+    //    {
+    //        var eatable = other.GetComponent<Eatable>();
+    //        if (eatable != null)
+    //        {
+    //            thisEatableHerring = eatable;
+    //            eatableHerrings.Add(thisEatableHerring);
+    //            if (eatableHerrings[0].hoverActivated == false)
+    //            {
+    //                eatableHerrings[0].OnHoverStart();
+    //            }
+                
+    //        }
+    //    }
+    //}
+
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("stunnedHerring"))
         {
-            //var eatable = other.GetComponent<Eatable>();
-            //if (eatable == eatableHerring)
+            var eatable = other.GetComponent<Eatable>();
+            if(eatableHerrings.Count > 0)
+            {
+                if (eatable == eatableHerrings[0])
+                {
+                    eatableHerrings[0].OnHoverEnd();
+                    eatableHerrings.Clear();
+                    //eatableHerrings.Remove(eatableHerrings[0]);
+
+                }
+            }
+            
+
+            //if (eatableHerring != null)
             //{
             //    eatableHerring.OnHoverEnd();
             //    eatableHerring = null;
             //}
-
-            if (eatableHerring != null)
-            {
-                eatableHerring.OnHoverEnd();
-                eatableHerring = null;
-            }
         }
         //else
         //{
@@ -86,31 +113,8 @@ public class EatingController : MonoBehaviour
 
     public void Bite(InputAction.CallbackContext context)
     {
-        if(eatableHerring != null)
-        {
-                   
-
-            if(eatenHerringCount < targetHerringCount)
-            {
-                //DestroyHerring
-                Destroy(eatableHerring.gameObject);
-                Debug.Log("herring should disappear");
-                //increase count by 1
-                eatenHerringCount++;
-                Debug.Log(eatenHerringCount);
-
-                //play success audio
-
-                int index = UnityEngine.Random.Range(0, successClips.Count);
-                var clip = successClips[index];
-                audioSource.PlayOneShot(clip);
-
-
-
-            }
-
-        }
-        else
+        
+        if(eatableHerrings.Count == 0)
         {
             //play other sounds
             int index = UnityEngine.Random.Range(0, failureClips.Count);
@@ -118,6 +122,57 @@ public class EatingController : MonoBehaviour
             audioSource.PlayOneShot(clip);
 
         }
+        else
+        {
+            if (eatenHerringCount < targetHerringCount)
+            {
+                //Destroy Active Herring
+                Destroy(eatableHerrings[0].gameObject);
+                Debug.Log("pink herring should disappear");
+                //increase count by 1
+                eatenHerringCount++;
+                //play success audio
+                int index = UnityEngine.Random.Range(0, successClips.Count);
+                var clip = successClips[index];
+                audioSource.PlayOneShot(clip);
+                //Remove from list
+                eatableHerrings.Remove(eatableHerrings[0]);
+                
+            }
+        }
+        //if(eatableHerrings[0] != null)
+        //{
+
+
+        //    if(eatenHerringCount < targetHerringCount)
+        //    {
+        //        //DestroyHerring
+        //        Destroy(eatableHerrings[0].gameObject);
+        //        Debug.Log("herring should disappear");
+        //        //increase count by 1
+        //        eatenHerringCount++;
+        //        Debug.Log(eatenHerringCount);
+
+        //        //play success audio
+
+        //        int index = UnityEngine.Random.Range(0, successClips.Count);
+        //        var clip = successClips[index];
+        //        audioSource.PlayOneShot(clip);
+
+        //        //Remove from list
+        //        eatableHerrings.Remove(eatableHerrings[0]);
+
+        //    }
+
+        //}
+        //else
+        //{
+        //    //play other sounds
+        //    int index = UnityEngine.Random.Range(0, failureClips.Count);
+        //    var clip = failureClips[index];
+        //    audioSource.PlayOneShot(clip);
+
+        //}
 
     }
 

@@ -8,6 +8,7 @@ public class Eatable : MonoBehaviour
     private Color hoverColor;
     private Color nonHoverColor;
     private float lifetime = 0;
+    public bool hoverActivated = false;
 
     // Start is called before the first frame update
     void Start()
@@ -34,11 +35,13 @@ public class Eatable : MonoBehaviour
     public void OnHoverStart()
     {
         herringMaterial.color = hoverColor;
+        hoverActivated = true;
     }
 
     public void OnHoverEnd()
     {
         herringMaterial.color = nonHoverColor;
+        hoverActivated = false;
     }
 
 

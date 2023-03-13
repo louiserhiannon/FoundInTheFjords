@@ -28,7 +28,7 @@ public class FogManager : MonoBehaviour
 
     void Start()
     {
-        maxFogDepth = -5.0f;
+        maxFogDepth = -7.0f;
         //maxFogDensity = 0.02f;
         //minFogDensity = 0.02f;
         underwaterDistortionRenderer = underwaterDistortion.GetComponent<MeshRenderer>();

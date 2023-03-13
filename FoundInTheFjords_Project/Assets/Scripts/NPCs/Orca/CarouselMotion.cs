@@ -15,7 +15,7 @@ public class CarouselMotion : MonoBehaviour
     [SerializeField] private bool coroutineRunning = false;
     private float minDistance;
     private float maxDistance;
-    public float maxSlapDistance = 6.0f;
+    [SerializeField] private float maxSlapDistance = 6.0f;
     private Animator tailslapAnimator;
     
 
